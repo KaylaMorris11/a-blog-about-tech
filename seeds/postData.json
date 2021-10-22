@@ -1,0 +1,25 @@
+[
+    {
+        "title":"Programming Is Hard",
+        "description": "But it'll be worth it in the end!",
+        "user_id":"1"
+
+    },
+    {   
+        "title":"Learning HTML",
+        "description": "Some would say this is the easiest part of programming!",
+        "user_id":"2"
+    },
+    {   
+        "id": "3",
+        "title":"Keeping Your Thoughts Organized",
+        "description": "This is how you keep your thoughts organized when coding!",
+        "user_id":"3"
+    },
+    {
+        "id": "4",
+        "title":"How to Become A Full-Stack Developer",
+        "description": "These are the steps to take to become a full-stack developer!",
+        "user_id":"4"
+    }
+]

@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["id", "name"],
+          attributes: ["id", "name"]
         },
       ],
     });
@@ -59,7 +59,7 @@ router.get('/comment', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Comment }],
     });
 
     const user = userData.get({ plain: true });
@@ -76,7 +76,7 @@ router.get('/comment', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/blog');
     return;
   }
 

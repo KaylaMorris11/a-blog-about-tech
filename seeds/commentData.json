@@ -1,0 +1,20 @@
+[
+    {   
+        "date_created": "04-21-2021",
+        "description": "Wow, I love your post!",
+        "post_id": "1",
+        "user_id": "2"
+    },
+    {   
+        "date_created": "05-22-2021",
+        "description": "This is so inspring! :-)",
+        "post_id": "2",
+        "user_id":"2"
+    },
+    {
+        "date_created": "06-21-2021",
+        "description": "Ah! What a great read. This made my day ~",
+        "post_id": "2",
+        "user_id":"1"
+    }
+]
