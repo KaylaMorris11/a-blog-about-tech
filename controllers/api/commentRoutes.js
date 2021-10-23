@@ -5,7 +5,7 @@ const { Post, Comment, User } = require("../../models");
 router.get('/', async (req, res) => {
     // find all comments
     try {
-      const commentData = await Comment.findAll({
+      const comments = await Comment.findAll({
         include: [{ model: User }, { model: Post}],
       });
       res.status(200).json(commentData);
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // find one Comment by its `id` value
     try {
-      const commentData = await Comment.findByPk(req.params.id, {
+      const comments = await Comment.findByPk(req.params.id, {
         include: [{ model: User }, {model: Post}],
       });
       res.status(200).json(commentData);
