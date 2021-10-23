@@ -9,10 +9,10 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["id", "name"]
+          attributes: ["name"],
         },
       ],
-    });
+    });d
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -33,7 +33,7 @@ router.get('/post/:id', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["id","name"],
+          attributes: ["name"],
         },
         {
             model: Comment,
