@@ -1,11 +1,40 @@
-
-<div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  <p>
 <div>
-    <p>Posts:</p>
+    <h1>
+        {{post.title}}
+    </h1>
+    <p>
+        Posted by {{post.user.name}} on {{format_date post.createdAt}}. Last edited on {{format_date
+        post.updatedAt}}.
+    </p>
+    <p>
+        {{post.description}}
+    </p>
+    {{#each comments as |comment|}}
+    <div>
+        {{comment.user.username}} on {{format_date comment.createdAt}}:
+        <br>
+        <br>
+        {{comment.description}}
+    </div>
+    {{/each}}
+
 </div>
-  </p>
+
+{{#if logged_in}}
+<form id="newComment">
+    <textarea placeholder="What would you like to say about this?" id="commentDesc"
+        data-post_id="{{post.id}}"></textarea>
+    <div>
+        <p>
+            <buttontype="submit">
+                Add Comment
+            </button>
+        </p>
+    </div>
+</form>
+
 </div>
+{{/if}}
+
+
+<script src="/js/new-comment.js"></script>

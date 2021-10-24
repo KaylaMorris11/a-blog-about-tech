@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-
+const withAuth = require('../../utils/auth');
 
 // Get all posts
 router.get('/', async (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         res.status(200).json(postData);
 
     } catch (err) {
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 });
 
@@ -48,11 +48,11 @@ router.get('/:id', async (req, res) => {
         const comments = commentData.map((comment) => comment.get({ plain: true }));
 
         if (!postData) {
-            res.json(404)
+            res.status(400).json({ message: 'No post found' });
             return;
         }
 
-        res.render('posts', {
+        res.render('all-post', {
             post,
             comments,
             logged_in: req.session.logged_in
@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
     try {
         const postData = await Post.create({
             title: req.body.title,
-            description: req.body.description,
+            content: req.body.content,
             user_id: req.session.user_id,
         });
 
@@ -82,6 +82,51 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Get post to edit 
+router.get('/edit-post/:id', withAuth, async (req, res) => {
+
+    try {
+        const postData = await Post.findByPk(req.params.id);
+        const post = postData.get({ plain: true });
+
+        res.render('edit-post', {
+            post,
+            logged_in: req.session.logged_in,
+            post_id: req.params.id
+        });
+
+    } catch (err) {
+        res.status(400).json(err);
+    };
+});
+
+// Update post
+router.put('/edit/:id', async (req, res) => {
+
+    try {
+        const postData = await Post.update(
+            {
+                title: req.body.title,
+                content: req.body.content,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+
+        if (!postData) {
+            res.status(404).json({ message: 'No post found' });
+            return;
+        }
+
+        res.status(200).json(postData);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // Delete post
 router.delete('/delete/:id', async (req, res) => {
@@ -95,7 +140,7 @@ router.delete('/delete/:id', async (req, res) => {
         });
 
         if (!postData) {
-            res.json(404)
+            res.status(404).json({ message: 'No Post found' });
             return;
         }
 
