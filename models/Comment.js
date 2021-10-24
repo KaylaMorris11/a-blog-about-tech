@@ -11,11 +11,6 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     description: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -38,6 +33,7 @@ Comment.init(
   {
     sequelize,
     timestamps: false,
+    createdAt: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'comment',

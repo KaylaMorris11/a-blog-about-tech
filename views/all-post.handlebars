@@ -3,15 +3,14 @@
         {{post.title}}
     </h1>
     <p>
-        Posted by {{post.user.name}} on {{format_date post.createdAt}}. Last edited on {{format_date
-        post.updatedAt}}.
+        Posted by {{post.user.name}} on {{format_date post.createdAt}}.
     </p>
     <p>
         {{post.description}}
     </p>
     {{#each comments as |comment|}}
     <div>
-        {{comment.user.username}} on {{format_date comment.createdAt}}:
+        {{comment.user.name}} on {{format_date comment.createdAt}}:
         <br>
         <br>
         {{comment.description}}

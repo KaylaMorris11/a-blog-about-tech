@@ -2,7 +2,7 @@ const deletePostHandler = async (event) => {
 
     event.preventDefault();
 
-    const post_id = document.querySelector('#edit-post-form').dataset.post_id;
+    const post_id = document.querySelector('#editPost').dataset.post_id;
 
     const response = await fetch(`/api/posts/delete/${post_id}`, {
         method: 'DELETE',
@@ -17,5 +17,5 @@ const deletePostHandler = async (event) => {
 };
 
 document
-    .querySelector('#edit-post-form')
+    .querySelector('#editPost')
     .addEventListener('reset', deletePostHandler);

@@ -15,11 +15,6 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     description: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -34,7 +29,8 @@ Post.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
+    createdAt: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'post',

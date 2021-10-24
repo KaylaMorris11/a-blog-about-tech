@@ -2,13 +2,14 @@
   font-family: "Open Sans", "Helvetica Neue", Helvetica,
 }
 #titleTech{
-  margin-right:600px;
+  margin-right:650px;
+  font-size:50px;
 }
 .nav-item{
   margin-right:20px;
 }
 #logout{
-margin-left:1650px;
+margin-left:1680px;
 }
 button{
   margin-top:20px;
@@ -23,3 +24,15 @@ button{
   border:1px solid black;
   border-radius: 20px;
   margin-bottom: 50px;
+}
+
+.active{
+  background-color: black;
+}
+
+li{
+  text-decoration: none;
+}
+nav {
+  text-decoration: none;
+}
