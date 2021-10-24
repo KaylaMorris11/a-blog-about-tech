@@ -1,3 +1,25 @@
 *{
   font-family: "Open Sans", "Helvetica Neue", Helvetica,
 }
+#titleTech{
+  margin-right:600px;
+}
+.nav-item{
+  margin-right:20px;
+}
+#logout{
+margin-left:1650px;
+}
+button{
+  margin-top:20px;
+  background-color:black;
+  color:white;
+  border-radius: 12px;
+  border-color: black;
+}
+
+.postcontainer{
+  padding: 20px;
+  border:1px solid black;
+  border-radius: 20px;
+  margin-bottom: 50px;
