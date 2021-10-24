@@ -52,7 +52,7 @@ router.get('/:id', async (req, res) => {
             return;
         }
 
-        res.render('all-post', {
+        res.render('single-post', {
             post,
             comments,
             logged_in: req.session.logged_in

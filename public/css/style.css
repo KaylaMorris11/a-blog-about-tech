@@ -28,7 +28,6 @@ a{
 
 .postcontainer{
   padding: 20px;
- 
   border-radius: 20px;
   margin-bottom: 50px;
 }
@@ -46,4 +45,8 @@ textarea, input{
 
 .card-header{
   background-color:white;
+}
+.card-body{
+  font-size: 20px;
+  font-weight: bolder;
 }
