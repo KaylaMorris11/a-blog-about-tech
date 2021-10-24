@@ -1,13 +1,16 @@
 <div class="postcontainer">
-    <h1>
-        {{post.title}}
-    </h1>
-    <p>
+    <div class="card">
+ <div class="card-header">
+      <h2>  {{post.title}}</h2>
+       <p>
         Posted by {{post.user.name}} on {{format_date post.createdAt}}.
     </p>
+    </div>
+    <div class="card-body">
     <p>
         {{post.description}}
     </p>
+    </div>
     {{#each comments as |comment|}}
     <div>
         {{comment.user.name}} on {{format_date comment.createdAt}}:
@@ -16,7 +19,7 @@
         {{comment.description}}
     </div>
     {{/each}}
-
+</div>
 </div>
 
 {{#if logged_in}}

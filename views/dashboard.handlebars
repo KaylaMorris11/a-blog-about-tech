@@ -3,7 +3,7 @@
     My Posts
   </h1>
   {{#each posts as |post|}}
-    <a data-post_id="{{post.id}}" href="/api/posts/edit-post/{{post.id}}">
+    <a data-post_id="{{post.id}}">
       {{post.title}}
       |
       {{format_date post.createdAt}}

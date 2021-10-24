@@ -1,5 +1,7 @@
 *{
-  font-family: "Open Sans", "Helvetica Neue", Helvetica,
+  font-family: "Open Sans", "Helvetica Neue", Helvetica,;
+  background-color: pink;
+  color:black;
 }
 #titleTech{
   margin-right:650px;
@@ -13,21 +15,22 @@ margin-left:1680px;
 }
 button{
   margin-top:20px;
-  background-color:black;
-  color:white;
+  margin-bottom:20px;
+  background-color:white;
+  color:black;
   border-radius: 12px;
-  border-color: black;
+  border-color: white;
+}
+a{
+  text-decoration:none;
+  color:black;
 }
 
 .postcontainer{
   padding: 20px;
-  border:1px solid black;
+ 
   border-radius: 20px;
   margin-bottom: 50px;
-}
-
-.active{
-  background-color: black;
 }
 
 li{
@@ -35,4 +38,12 @@ li{
 }
 nav {
   text-decoration: none;
+}
+textarea, input{
+  background-color: white;
+  border-color: white;
+}
+
+.card-header{
+  background-color:white;
 }
