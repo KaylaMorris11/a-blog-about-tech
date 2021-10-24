@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const withAuth = require("../../utils/auth");
 const { Post, Comment, User } = require("../../models");
 
 router.get('/', async (req, res) => {
@@ -8,7 +7,7 @@ router.get('/', async (req, res) => {
       const comments = await Comment.findAll({
         include: [{ model: User }, { model: Post}],
       });
-      res.status(200).json(commentData);
+      res.status(200).json(comments);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -18,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // find one Comment by its `id` value
     try {
-      const comments = await Comment.findByPk(req.params.id, {
+      const commentData = await Comment.findByPk(req.params.id, {
         include: [{ model: User }, {model: Post}],
       });
       res.status(200).json(commentData);
@@ -37,7 +36,7 @@ router.get('/:id', async (req, res) => {
     }
   });
 
-  router.put('/:id', async (req, res) => {
+  router.put('./:id', async (req, res) => {
     // update a Comment by its `id` value
     try {
       const updateComment = await Comment.update(req.body,{
@@ -57,8 +56,8 @@ router.get('/:id', async (req, res) => {
               id: req.params.id,
             },
           });
-          if (!deleteCat) {
-            res.status(404).json({ message: 'No Comment found with that id!' });
+          if (!deleteComm) {
+            res.json(404)
             return;
           }
           res.status(200).json(deleteComm);
@@ -66,4 +65,6 @@ router.get('/:id', async (req, res) => {
           res.status(500).json(err);
         }
       });
+
+      module.exports = router;
       

@@ -1,0 +1,17 @@
+<div>
+            <div>
+                <p>
+              Posts
+                </p>
+                {{#each posts as |post|}}
+                <a data-post_id="{{post.id}}" href="/api/posts/editpost/{{post.id}}">
+                    {{post.title}} | {{format_date}}
+                </a>
+                {{/each}}
+                <div >
+                    <div>
+                    <a href="/posts">Create A Post</a>
+                    </div>
+                </div>
+            </div>
+        </div>

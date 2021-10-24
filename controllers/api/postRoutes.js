@@ -1,71 +1,109 @@
-const { Post, User, Comment }= require("../../models");
-const router = require("express").Router();
+const router = require('express').Router();
+const { User, Post, Comment } = require('../../models');
 
+
+// Get all posts
 router.get('/', async (req, res) => {
-    // find all posts
-    // be sure to include its associated Products
+
     try {
-      const posts = await Post.findAll({
-        include: [{ model: User },{model: Comment}],
-      });
-      res.status(200).json(posts);
+        const postData = await Post.findAll(
+            {
+                include: [{ model: User }, { model: Comment }],
+            },
+            {
+                where: { user_id: req.session.id },
+            }
+        );
+
+        res.status(200).json(postData);
+
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
-  });
-  
-  router.get('/:id', async (req, res) => {
-    // find one Post by its `id` value
-    // be sure to include its associated Products
+});
+
+// Get indivdual post
+router.get('/:id', async (req, res) => {
+
     try {
-      const post = await Post.findByPk(req.params.id, {
-        include: [{ model: User },{model: Comment}],
-      });
-      res.status(200).json(post);
+        const postData = await Post.findByPk(
+            req.params.id,
+            {
+                include: [{ model: User, attributes: ['name'] }],
+            },
+            {
+                where: {
+                    user_id: req.session.id,
+                },
+            }
+        );
+
+        const post = postData.get({ plain: true });
+
+        const commentData = await Comment.findAll({
+            where: { post_id: post.id },
+            include: [{ model: User, attributes: ['name'] }]
+        });
+
+        const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+        if (!postData) {
+            res.json(404)
+            return;
+        }
+
+        res.render('posts', {
+            post,
+            comments,
+            logged_in: req.session.logged_in
+        });
+
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
-  });
-  
-  router.post('/', async (req, res) => {
-    // create a new Post
+});
+
+// Create post
+router.post('/', async (req, res) => {
+
     try {
-      const newPost = await Post.create(req.body);
-      res.status(200).json(newPost);
+        const postData = await Post.create({
+            title: req.body.title,
+            description: req.body.description,
+            user_id: req.session.user_id,
+        });
+
+        console.log(postData);
+
+        res.status(200).json(postData);
+
     } catch (err) {
-      res.status(400).json(err);
+        res.status(400).json(err);
     }
-  });
-  
-  router.put('/:id', async (req, res) => {
-    // update a Post by its `id` value
+});
+
+
+// Delete post
+router.delete('/delete/:id', async (req, res) => {
+
     try {
-      const updatePost = await Post.update(req.body,{
-        where:{id:req.params.id}
-      });
-      res.status(200).json(updatePost);
+        const postData = await Post.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
+
+        if (!postData) {
+            res.json(404)
+            return;
+        }
+
+        res.status(200).json(postData);
+
     } catch (err) {
-      res.status(400).json(err);
+        res.status(500).json(err);
     }
-    });
-  
-  
-  router.delete('/:id', async (req, res) => {
-    // delete a Post by its `id` value
-    try {
-      const deletePost = await Post.destroy({
-        where: {
-          id: req.params.id,
-        },
-      });
-      if (!deletePost) {
-        res.status(404).json({ message: 'No Post found with that id!' });
-        return;
-      }
-      res.status(200).json(deletePost);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-  module.exports = router;
+});
+
+module.exports = router;

@@ -1,0 +1,17 @@
+{{#each posts as |post| }}
+
+<div>
+            <div>
+                <p>
+                    {{post.title}}
+                </p>
+                <p>
+                    {{post.user.name}} {{format_date}}
+                  </p>
+                <div class="control mt-3 mb-0 ">
+                    <a class="button is-info" href="/api/post/{{post.id}}">View Post</a>
+                </div>
+            </div>
+        </div>
+
+{{/each}}
