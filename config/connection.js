@@ -11,9 +11,12 @@ if (process.env.JAWSDB_URL) {
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
-      host: 'localhost',
+      host: 'x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	',
       dialect: 'mysql',
-      port: 3306
+      port: 3306,
+      user: 'lwswh2zdjixfbl6z',
+      password: 'atgfu1uu67lfd6ye',
+      database: 'q9r70zp2dfzl55q9'
     }
   );
 }
