@@ -2,7 +2,7 @@
 A blog where you can share your thoughts! Sign up and log in, create your own posts, and comment on other user's posts!
 
 ## Deployed URL
-https://peaceful-garden-78205.herokuapp.com/
+https://calm-scrubland-12038.herokuapp.com/
 ## Technologies
  Use
 Mongoose, Javascript, Handlebars
