@@ -19,7 +19,7 @@
     "bugs": {
         "url": "https://github.com/KaylaMorris11/a-blog-about-tech/issues"
     },
-    "homepage": "https://github.com/KaylaMorris11/a-blog-about-tech#readme",
+    "homepage": "https://github.com/KaylaMorris11/a-blog-about-tech/",
     "dependencies": {
         "bcrypt": "^5.0.1",
         "connect-session-sequelize": "^7.1.1",
