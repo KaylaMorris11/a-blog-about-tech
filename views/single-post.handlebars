@@ -11,17 +11,17 @@
         {{post.description}}
     </p>
     </div>
-    {{#each comments as |comment|}}
+ 
+</div>
+</div>
+  
     <div>
         {{comment.user.name}} on {{format_date comment.createdAt}}:
         <br>
         <br>
         {{comment.description}}
     </div>
-    {{/each}}
-</div>
-</div>
-
+ 
 {{#if logged_in}}
 <form id="newComment">
     <textarea placeholder="What would you like to say about this?" id="commentDesc"
